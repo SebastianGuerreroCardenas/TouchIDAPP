@@ -9,6 +9,8 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    var url = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
