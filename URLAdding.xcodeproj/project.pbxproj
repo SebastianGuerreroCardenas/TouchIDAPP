@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A6AA3DD8C3336E821AD53915 /* Pods_URLAdding.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75A80D82ED05C7787FF4A5C4 /* Pods_URLAdding.framework */; };
+		B91622C71DE4A164009D935C /* SocketIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91622C61DE4A164009D935C /* SocketIOManager.swift */; };
 		B98543721DC0208000E4F2B4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98543711DC0208000E4F2B4 /* AppDelegate.swift */; };
 		B98543741DC0208000E4F2B4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98543731DC0208000E4F2B4 /* ViewController.swift */; };
 		B98543771DC0208000E4F2B4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B98543751DC0208000E4F2B4 /* Main.storyboard */; };
@@ -18,6 +20,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		201B2B16172AB8181B0F5E51 /* Pods-URLAdding.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-URLAdding.debug.xcconfig"; path = "Pods/Target Support Files/Pods-URLAdding/Pods-URLAdding.debug.xcconfig"; sourceTree = "<group>"; };
+		602FB3C6AA7B90BF8068F1BF /* Pods-URLAdding.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-URLAdding.release.xcconfig"; path = "Pods/Target Support Files/Pods-URLAdding/Pods-URLAdding.release.xcconfig"; sourceTree = "<group>"; };
+		75A80D82ED05C7787FF4A5C4 /* Pods_URLAdding.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_URLAdding.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B91622C61DE4A164009D935C /* SocketIOManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketIOManager.swift; sourceTree = "<group>"; };
 		B985436E1DC0208000E4F2B4 /* URLAdding.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = URLAdding.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B98543711DC0208000E4F2B4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B98543731DC0208000E4F2B4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -35,17 +41,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6AA3DD8C3336E821AD53915 /* Pods_URLAdding.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		43F6AD0CA4900630A6D26D3A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				201B2B16172AB8181B0F5E51 /* Pods-URLAdding.debug.xcconfig */,
+				602FB3C6AA7B90BF8068F1BF /* Pods-URLAdding.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		A06214CFDECC74C2E2039347 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				75A80D82ED05C7787FF4A5C4 /* Pods_URLAdding.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		B98543651DC0208000E4F2B4 = {
 			isa = PBXGroup;
 			children = (
 				B98543701DC0208000E4F2B4 /* URLAdding */,
 				B985436F1DC0208000E4F2B4 /* Products */,
+				43F6AD0CA4900630A6D26D3A /* Pods */,
+				A06214CFDECC74C2E2039347 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -61,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				B98543711DC0208000E4F2B4 /* AppDelegate.swift */,
+				B91622C61DE4A164009D935C /* SocketIOManager.swift */,
 				B98543731DC0208000E4F2B4 /* ViewController.swift */,
 				B98543751DC0208000E4F2B4 /* Main.storyboard */,
 				B985437B1DC0208000E4F2B4 /* Assets.xcassets */,
@@ -80,9 +107,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B98543831DC0208000E4F2B4 /* Build configuration list for PBXNativeTarget "URLAdding" */;
 			buildPhases = (
+				054B8654F354D94322F620F3 /* [CP] Check Pods Manifest.lock */,
 				B985436A1DC0208000E4F2B4 /* Sources */,
 				B985436B1DC0208000E4F2B4 /* Frameworks */,
 				B985436C1DC0208000E4F2B4 /* Resources */,
+				ABEAC9A00C612CF3D0359B34 /* [CP] Embed Pods Frameworks */,
+				DC98DF3A2D0A5B22AAB13DE2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -140,6 +170,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		054B8654F354D94322F620F3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		ABEAC9A00C612CF3D0359B34 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-URLAdding/Pods-URLAdding-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DC98DF3A2D0A5B22AAB13DE2 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-URLAdding/Pods-URLAdding-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		B985436A1DC0208000E4F2B4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -149,6 +227,7 @@
 				B98543741DC0208000E4F2B4 /* ViewController.swift in Sources */,
 				B98543721DC0208000E4F2B4 /* AppDelegate.swift in Sources */,
 				B98543AB1DC026F900E4F2B4 /* SecondViewController.swift in Sources */,
+				B91622C71DE4A164009D935C /* SocketIOManager.swift in Sources */,
 				B98543A91DC026E200E4F2B4 /* FirstViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -268,6 +347,7 @@
 		};
 		B98543841DC0208000E4F2B4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 201B2B16172AB8181B0F5E51 /* Pods-URLAdding.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = URLAdding/Info.plist;
@@ -280,6 +360,7 @@
 		};
 		B98543851DC0208000E4F2B4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 602FB3C6AA7B90BF8068F1BF /* Pods-URLAdding.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = URLAdding/Info.plist;
@@ -309,6 +390,7 @@
 				B98543851DC0208000E4F2B4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

@@ -8,12 +8,16 @@
 
 import UIKit
 
+
 class ViewController: UIViewController {
     
     var url = ""
+    @IBOutlet weak var titleLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        titleLabel.text = url
+        print(url)
         // Do any additional setup after loading the view, typically from a nib.
     }
 

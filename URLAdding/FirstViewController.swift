@@ -30,13 +30,18 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         urlSelected = webList[indexPath.row]
-        let viewController = storyboard?.instantiateViewController(withIdentifier: "websiteDetails")
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let destination = storyboard.instantiateViewController(withIdentifier: "websiteDetails") as! ViewController
+        destination.url = urlSelected
+        navigationController?.pushViewController(destination, animated: true)
+//        urlSelected = webList[indexPath.row]
+//        let storyBoard = storyboard?.instantiateViewController(withIdentifier: "websiteDetails")
         //viewController.url = urlSelected
-        self.navigationController?.pushViewController(viewController!, animated: true)
+//       rself.navigationController?.pushViewController(viewController!, animated: true)
         
         print(urlSelected)
     }
-    
+
     
     
     override func viewDidLoad() {
@@ -55,14 +60,15 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toWebsite" {
-            let websiteView = segue.destination as? ViewController
-            websiteView?.url = self.urlSelected
-            print("did it work")
+        if segue.identifier == "detailView" ,
+            let nextScene = segue.destination as? ViewController ,
+            let indexPath = self.webTable.indexPathForSelectedRow {
+            let selectedURL = webList[indexPath.row]
+            nextScene.url = selectedURL
         }
         
     }
-    
+        
     func generateWebList() {
         webList = ["wow", "yes"]
         let context = appDelegate.persistentContainer.viewContext
