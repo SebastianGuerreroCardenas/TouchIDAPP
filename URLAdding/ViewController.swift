@@ -17,7 +17,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         titleLabel.text = url
-        print(url)
+        var website = URLCoreDataManager(url: url)
         // Do any additional setup after loading the view, typically from a nib.
     }
 
