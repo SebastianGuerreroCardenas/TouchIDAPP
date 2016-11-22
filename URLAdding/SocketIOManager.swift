@@ -36,5 +36,31 @@ class SocketIOManager: NSObject {
         return true
     }
     
+    //It should url, username, token, (locaiton)
+    func startHandshake(parameters: [String: AnyObject]) -> Bool {
+        socket.emit("handshake", parameters)
+        return true
+    }
+    
+    func handShakeResponse() -> Bool {
+        socket.on("handShake") {data, ack in
+            print(data)
+        }
+        return true
+    }
+    
+    func login(parameters: [String: AnyObject]) -> Bool {
+        socket.emit("login", parameters)
+        return true
+    }
+    
+    func loginResponse() -> Bool {
+        socket.on("login") {data, ack in
+            print(data)
+        }
+        return true
+    }
+    
+    
     
 }
