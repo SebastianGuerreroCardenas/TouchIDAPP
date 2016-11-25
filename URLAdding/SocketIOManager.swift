@@ -9,13 +9,15 @@
 import UIKit
 import SocketIO
 
+let serverPath = "http://127.0.0.1:8080/"
+
 class SocketIOManager: NSObject {
     static let sharedInstance = SocketIOManager()
-    var socket = SocketIOClient(socketURL: URL(string: "https://your-ngrok-url.ngrok.io")!, config: [.log(false), .forcePolling(true)])
+    var socket = SocketIOClient(socketURL: URL(string: serverPath)!, config: [.log(false), .forcePolling(true)])
     
     override init() {
         super.init()
-        
+//        socket.connect()
         socket.on("test") { dataArray, ack in
             print(dataArray)
         }
@@ -38,13 +40,26 @@ class SocketIOManager: NSObject {
     
     //It should url, username, token, (locaiton)
     func startHandshake(parameters: [String: AnyObject]) -> Bool {
+//        print(socket)
+//        self.establishConnection()
         socket.emit("handshake", parameters)
         return true
     }
     
     func handShakeResponse() -> Bool {
+        //Running handlers method allows these to be stored in socket
         socket.on("handShake") {data, ack in
+            print("Here")
             print(data)
+        }
+        
+        socket.on("connection") {data, ack in
+            print(data)
+            print("WOOOOOO")
+        }
+        
+        self.socket.onAny {
+            print("Got event: \($0.event), with items: \($0.items!)")
         }
         return true
     }
@@ -60,6 +75,7 @@ class SocketIOManager: NSObject {
         }
         return true
     }
+    
     
     
     

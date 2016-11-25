@@ -13,8 +13,11 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var urlSelected = ""
+    let IOManager = SocketIOManager.sharedInstance
+
     
     var webList = [String]()
+    
     
     @IBOutlet weak var webTable: UITableView!
     
@@ -46,6 +49,12 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Load event handlers and finish establishing connection
+        IOManager.handShakeResponse()
+//        IOManager.establishConnection()
+        
+        //Emitting here did not work since connection had not been fully established
+//        IOManager.startHandshake(parameters: [:])
         // Do any additional setup after loading the view, typically from a nib.
     }
     
@@ -57,6 +66,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     override func viewDidAppear(_ animated: Bool) {
         generateWebList()
         webTable.reloadData()
+
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -65,6 +75,8 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
             let indexPath = self.webTable.indexPathForSelectedRow {
             let selectedURL = webList[indexPath.row]
             nextScene.url = selectedURL
+            IOManager.startHandshake(parameters: [:])
+
         }
         
     }

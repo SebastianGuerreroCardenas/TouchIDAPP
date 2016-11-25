@@ -11,6 +11,7 @@ import CoreData
 
 class SecondViewController: UIViewController {
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    let IOManager = SocketIOManager.sharedInstance
    
 
 
@@ -98,6 +99,8 @@ class SecondViewController: UIViewController {
     }
     
     func alertAction() {
+        //Emitting here works
+        IOManager.startHandshake(parameters: [:])
         print("It Worked")
     }
     
