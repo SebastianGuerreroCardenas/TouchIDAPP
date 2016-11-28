@@ -39,6 +39,7 @@ class SocketConnectionViewController: UIViewController {
     }
     
     func overwriteSocket() -> Bool{
+        //Need to make sure self.url is of form http:\\url\
         let result = self.IOManager.changeClient(url: self.url)
         //self.IOManager.establishConnection()
         if result {
@@ -50,13 +51,28 @@ class SocketConnectionViewController: UIViewController {
     }
     
     func loadHandlers(){
-        IOManager.handShakeResponse()
+        IOManager.loadHandlers(inst: self)
     }
     
+    func handleHandshake(data: [Any]){
+        print(data)
+        print("Handling info from server now")
+        performSegue(withIdentifier: "established", sender: data)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "established") {
+            let finalDestination = segue.destination as? EstablishedHandshakeViewController
+            finalDestination?.data = sender as! [Any]
+        }
+    }
+    
+    
     @IBAction func sendVerification(sender: AnyObject){
-        //Cannot connect back
-        //IOManager.establishConnection()
+        //Need to find out now if we are sending a setup or a request to sign-in
         IOManager.startHandshake(parameters: [:])
+        
+        //Info coming back from here is to be handled in some handler from before
         print("Seding out handshake, see server output")
     }
     

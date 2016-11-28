@@ -215,10 +215,43 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <segue destination="CHf-qQ-aFT" kind="show" identifier="established" id="WAg-do-MNc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X82-PZ-UhM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3336.8000000000002" y="-440.32983508245883"/>
+        </scene>
+        <!--Established Handshake View Controller-->
+        <scene sceneID="OPa-Mq-I9z">
+            <objects>
+                <viewController id="CHf-qQ-aFT" customClass="EstablishedHandshakeViewController" customModule="URLAdding" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="XVl-0L-UlL"/>
+                        <viewControllerLayoutGuide type="bottom" id="NaI-ew-tU0"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Z0G-QZ-T7i">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wlx-xw-KLP">
+                                <rect key="frame" x="100" y="290" width="175" height="87"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="label" destination="Wlx-xw-KLP" id="1K5-IG-o4L"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="K4O-6A-NQn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4156" y="-442.12893553223392"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="15H-xT-vTl">

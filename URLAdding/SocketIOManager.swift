@@ -41,17 +41,21 @@ class SocketIOManager: NSObject {
     
     //It should url, username, token, (locaiton)
     func startHandshake(parameters: [String: AnyObject]) -> Bool {
-//        print(socket)
-//        self.establishConnection()
         socket.emit("handshake", parameters)
         return true
     }
     
-    func handShakeResponse() -> Bool {
+    func loadHandlers(inst: SocketConnectionViewController) -> Bool {
         //Running handlers method allows these to be stored in socket
         socket.on("handShake") {data, ack in
             print("Here")
             print(data)
+        }
+        
+        socket.on("backFromHandshake") {data, ack in
+            print("Here")
+            print(data)
+            inst.handleHandshake(data: data)
         }
         
         socket.on("connection") {data, ack in
