@@ -25,6 +25,13 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "AuthenticationSegue") {
+            let finalDestination = segue.destination as? SocketConnectionViewController
+            finalDestination?.url = self.url
+        }
+    }
 
 
 }

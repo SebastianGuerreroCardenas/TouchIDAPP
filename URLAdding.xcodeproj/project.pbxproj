@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B271BB21DEC9B380078C097 /* SocketConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B271BB11DEC9B380078C097 /* SocketConnectionViewController.swift */; };
 		A6AA3DD8C3336E821AD53915 /* Pods_URLAdding.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75A80D82ED05C7787FF4A5C4 /* Pods_URLAdding.framework */; };
 		B91622C71DE4A164009D935C /* SocketIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91622C61DE4A164009D935C /* SocketIOManager.swift */; };
 		B91622C91DE4B22D009D935C /* URLCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91622C81DE4B22D009D935C /* URLCoreDataManager.swift */; };
@@ -24,6 +25,7 @@
 		201B2B16172AB8181B0F5E51 /* Pods-URLAdding.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-URLAdding.debug.xcconfig"; path = "Pods/Target Support Files/Pods-URLAdding/Pods-URLAdding.debug.xcconfig"; sourceTree = "<group>"; };
 		602FB3C6AA7B90BF8068F1BF /* Pods-URLAdding.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-URLAdding.release.xcconfig"; path = "Pods/Target Support Files/Pods-URLAdding/Pods-URLAdding.release.xcconfig"; sourceTree = "<group>"; };
 		75A80D82ED05C7787FF4A5C4 /* Pods_URLAdding.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_URLAdding.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7B271BB11DEC9B380078C097 /* SocketConnectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketConnectionViewController.swift; sourceTree = "<group>"; };
 		B91622C61DE4A164009D935C /* SocketIOManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketIOManager.swift; sourceTree = "<group>"; };
 		B91622C81DE4B22D009D935C /* URLCoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLCoreDataManager.swift; sourceTree = "<group>"; };
 		B985436E1DC0208000E4F2B4 /* URLAdding.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = URLAdding.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -99,6 +101,7 @@
 				B98543801DC0208000E4F2B4 /* Info.plist */,
 				B98543781DC0208000E4F2B4 /* URLAdding.xcdatamodeld */,
 				B91622C81DE4B22D009D935C /* URLCoreDataManager.swift */,
+				7B271BB11DEC9B380078C097 /* SocketConnectionViewController.swift */,
 			);
 			path = URLAdding;
 			sourceTree = "<group>";
@@ -233,6 +236,7 @@
 				B98543AB1DC026F900E4F2B4 /* SecondViewController.swift in Sources */,
 				B91622C71DE4A164009D935C /* SocketIOManager.swift in Sources */,
 				B98543A91DC026E200E4F2B4 /* FirstViewController.swift in Sources */,
+				7B271BB21DEC9B380078C097 /* SocketConnectionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

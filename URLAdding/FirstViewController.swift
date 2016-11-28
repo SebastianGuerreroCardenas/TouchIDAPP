@@ -50,7 +50,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     override func viewDidLoad() {
         super.viewDidLoad()
         //Load event handlers and finish establishing connection
-        IOManager.handShakeResponse()
+        //IOManager.handShakeResponse()
 //        IOManager.establishConnection()
         
         //Emitting here did not work since connection had not been fully established
@@ -75,7 +75,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
             let indexPath = self.webTable.indexPathForSelectedRow {
             let selectedURL = webList[indexPath.row]
             nextScene.url = selectedURL
-            IOManager.startHandshake(parameters: [:])
+            //IOManager.startHandshake(parameters: [:])
 
         }
         

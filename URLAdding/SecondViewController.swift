@@ -100,7 +100,7 @@ class SecondViewController: UIViewController {
     
     func alertAction() {
         //Emitting here works
-        IOManager.startHandshake(parameters: [:])
+        //IOManager.startHandshake(parameters: [:])
         print("It Worked")
     }
     

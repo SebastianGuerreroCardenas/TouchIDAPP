@@ -35,6 +35,7 @@ class SocketIOManager: NSObject {
     func changeClient(url: String) -> Bool {
         closeConnection()
         socket = SocketIOClient(socketURL: URL(string: url)!, config: [.log(false), .forcePolling(true)])
+//        socket.connect()
         return true
     }
     
