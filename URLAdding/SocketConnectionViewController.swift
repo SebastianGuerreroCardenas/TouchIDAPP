@@ -20,12 +20,13 @@ class SocketConnectionViewController: UIViewController {
             print("Empty URL")
             return
         }
-        /**
+        /*
          1. Overwrite Socket to be the new connection
          2. Try to establish connection
          3. Load things to listen to
          4. Send out verification
         */
+        
         // Do any additional setup after loading the view.
         let didOverwrite = self.overwriteSocket()
         //self.newSocketConnection() taken care of in overwriteSocket
@@ -38,6 +39,9 @@ class SocketConnectionViewController: UIViewController {
         }
     }
     
+    /**
+     Overwrites socket by connecting to new URL as passed
+    */
     func overwriteSocket() -> Bool{
         //Need to make sure self.url is of form http:\\url\
         let result = self.IOManager.changeClient(url: self.url)
@@ -50,10 +54,17 @@ class SocketConnectionViewController: UIViewController {
         return result
     }
     
+    /**
+     Loads the handlers for the given socket
+    */
     func loadHandlers(){
         IOManager.loadHandlers(inst: self)
     }
     
+    /**
+     Called when the server emits to a specific channel
+     - parameter data: The data returned by the server emission
+     */
     func handleHandshake(data: [Any]){
         print(data)
         print("Handling info from server now")
@@ -67,7 +78,9 @@ class SocketConnectionViewController: UIViewController {
         }
     }
     
-    
+    /**
+     Pings certain parameters to the server, which should then get a response
+    */
     @IBAction func sendVerification(sender: AnyObject){
         //Need to find out now if we are sending a setup or a request to sign-in
         IOManager.startHandshake(parameters: [:])
@@ -82,15 +95,5 @@ class SocketConnectionViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
