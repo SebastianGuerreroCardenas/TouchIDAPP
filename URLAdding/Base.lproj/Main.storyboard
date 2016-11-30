@@ -173,6 +173,14 @@
                                     <segue destination="3NL-vh-jEp" kind="showDetail" identifier="AuthenticationSegue" id="EbM-jh-4l1"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LCe-ru-Xdp">
+                                <rect key="frame" x="130" y="416" width="114" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Trigger Touch ID"/>
+                                <connections>
+                                    <action selector="startTouchIDAction:" destination="YlI-lU-5rs" eventType="touchUpInside" id="mR9-En-yE0"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -188,7 +196,7 @@
         <!--Socket Connection View Controller-->
         <scene sceneID="WY3-iG-CPp">
             <objects>
-                <viewController id="3NL-vh-jEp" customClass="SocketConnectionViewController" customModule="URLAdding" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="socketConnectionC" id="3NL-vh-jEp" customClass="SocketConnectionViewController" customModule="URLAdding" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ttk-Mh-GGk"/>
                         <viewControllerLayoutGuide type="bottom" id="jHS-6L-z4N"/>

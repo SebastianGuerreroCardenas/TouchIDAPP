@@ -12,6 +12,7 @@
 		A6AA3DD8C3336E821AD53915 /* Pods_URLAdding.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75A80D82ED05C7787FF4A5C4 /* Pods_URLAdding.framework */; };
 		B91622C71DE4A164009D935C /* SocketIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91622C61DE4A164009D935C /* SocketIOManager.swift */; };
 		B91622C91DE4B22D009D935C /* URLCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91622C81DE4B22D009D935C /* URLCoreDataManager.swift */; };
+		B91622DB1DEE6A03009D935C /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B91622DA1DEE6A03009D935C /* LocalAuthentication.framework */; };
 		B98543721DC0208000E4F2B4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98543711DC0208000E4F2B4 /* AppDelegate.swift */; };
 		B98543741DC0208000E4F2B4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98543731DC0208000E4F2B4 /* ViewController.swift */; };
 		B98543771DC0208000E4F2B4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B98543751DC0208000E4F2B4 /* Main.storyboard */; };
@@ -30,6 +31,7 @@
 		7B271BB31DECB5430078C097 /* EstablishedHandshakeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EstablishedHandshakeViewController.swift; sourceTree = "<group>"; };
 		B91622C61DE4A164009D935C /* SocketIOManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketIOManager.swift; sourceTree = "<group>"; };
 		B91622C81DE4B22D009D935C /* URLCoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLCoreDataManager.swift; sourceTree = "<group>"; };
+		B91622DA1DEE6A03009D935C /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		B985436E1DC0208000E4F2B4 /* URLAdding.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = URLAdding.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B98543711DC0208000E4F2B4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B98543731DC0208000E4F2B4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -47,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B91622DB1DEE6A03009D935C /* LocalAuthentication.framework in Frameworks */,
 				A6AA3DD8C3336E821AD53915 /* Pods_URLAdding.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -66,6 +69,7 @@
 		A06214CFDECC74C2E2039347 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B91622DA1DEE6A03009D935C /* LocalAuthentication.framework */,
 				75A80D82ED05C7787FF4A5C4 /* Pods_URLAdding.framework */,
 			);
 			name = Frameworks;

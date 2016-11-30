@@ -13,8 +13,8 @@ let serverPath = "http://127.0.0.1:8080/"
 
 class SocketIOManager: NSObject {
     static let sharedInstance = SocketIOManager()
-    var socket = SocketIOClient(socketURL: URL(string: serverPath)!, config: [.log(false), .forcePolling(true)])
     
+    var socket = SocketIOClient(socketURL: URL(string: serverPath)!, config: [.log(false), .forcePolling(true)])
     override init() {
         super.init()
 //        socket.connect()
@@ -95,6 +95,7 @@ class SocketIOManager: NSObject {
 //        
 //        return true
 //    }
+    
     
     
     

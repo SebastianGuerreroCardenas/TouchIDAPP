@@ -13,7 +13,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var urlSelected = ""
-    let IOManager = SocketIOManager.sharedInstance
+    //let IOManager = SocketIOManager.sharedInstance
 
     
     var webList = [String]()
