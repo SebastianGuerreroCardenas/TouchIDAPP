@@ -91,8 +91,9 @@ class ViewController: UIViewController {
     }
     
     func navigateToAuthenticatedVC() {
-        if let loggedInVC = self.storyboard?.instantiateViewController(withIdentifier: "socketConnectionC") {
+        if let loggedInVC = self.storyboard?.instantiateViewController(withIdentifier: "socketConnectionC") as? SocketConnectionViewController {
             DispatchQueue.main.async {
+                loggedInVC.url = self.url
                 self.navigationController?.pushViewController(loggedInVC, animated: true)
             }
         }
