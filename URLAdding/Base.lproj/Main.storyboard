@@ -173,12 +173,28 @@
                                     <action selector="startTouchIDAction:" destination="YlI-lU-5rs" eventType="touchUpInside" id="mR9-En-yE0"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PMd-fb-hiH">
+                                <rect key="frame" x="0.0" y="215" width="375" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="76b-I3-dJW">
+                                <rect key="frame" x="0.0" y="288" width="375" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="tNM-2V-joM"/>
                     <connections>
-                        <outlet property="titleLabel" destination="mvc-WJ-a26" id="P0L-vO-frA"/>
+                        <outlet property="nameLabel" destination="PMd-fb-hiH" id="FYC-KI-rQ3"/>
+                        <outlet property="titleLabel" destination="mvc-WJ-a26" id="fxb-M2-I44"/>
+                        <outlet property="usernameLabel" destination="76b-I3-dJW" id="iYN-XT-B9Y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RhH-Ox-7A0" userLabel="First Responder" sceneMemberID="firstResponder"/>

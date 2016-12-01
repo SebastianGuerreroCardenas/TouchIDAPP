@@ -36,12 +36,15 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let destination = storyboard.instantiateViewController(withIdentifier: "websiteDetails") as! ViewController
         destination.url = urlSelected
+        let storedCreds = findCredentials(url: urlSelected)
+        destination.name = storedCreds["name"] as! String
+        destination.username = storedCreds["username"] as! String
         navigationController?.pushViewController(destination, animated: true)
 //        urlSelected = webList[indexPath.row]
 //        let storyBoard = storyboard?.instantiateViewController(withIdentifier: "websiteDetails")
         //viewController.url = urlSelected
 //       rself.navigationController?.pushViewController(viewController!, animated: true)
-        
+//        print(findCredentials(url: urlSelected))
         print(urlSelected)
     }
 
@@ -74,13 +77,52 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
             let nextScene = segue.destination as? ViewController ,
             let indexPath = self.webTable.indexPathForSelectedRow {
             let selectedURL = webList[indexPath.row]
+            print(findCredentials(url: selectedURL))
             nextScene.url = selectedURL
             //IOManager.startHandshake(parameters: [:])
 
         }
         
     }
+    
+    func findCredentials(url: String) -> [String: Any]{
+        //Either do an API call or use internals?
+        //Assuming using internal data
+        let context = appDelegate.persistentContainer.viewContext
         
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Websites")
+        request.returnsObjectsAsFaults = false
+        
+        var urls = [String]()
+        
+        do {
+            let results = try context.fetch(request)
+            
+            if results.count > 0 {
+                for result in results as! [NSManagedObject]{
+                    if let urlGotBack = result.value(forKey: "url") as? String {
+                        if urlGotBack == url {
+                            let finalName = result.value(forKey: "name")
+                            let finalUsername = result.value(forKey: "username")
+                            var finalDict: [String: Any] = [:]
+                            finalDict["name"] = finalName
+                            finalDict["username"] = finalUsername
+                            return finalDict
+                        }
+                    }
+                }
+                webList = urls
+            }
+            else {
+                webList = ["no data"]
+            }
+        }
+        catch {
+            //process erros
+        }
+        return ["error" : "Internal Error"]
+    }
+    
     func generateWebList() {
         webList = ["wow", "yes"]
         let context = appDelegate.persistentContainer.viewContext

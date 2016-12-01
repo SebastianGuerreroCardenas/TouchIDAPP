@@ -12,11 +12,17 @@ import LocalAuthentication
 class ViewController: UIViewController {
     
     var url = ""
+    var name = ""
+    var username = ""
     @IBOutlet weak var titleLabel: UILabel!
-
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var usernameLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         titleLabel.text = url
+        nameLabel.text = name
+        usernameLabel.text = username
         var website = URLCoreDataManager(url: url)
         // Do any additional setup after loading the view, typically from a nib.
     }
