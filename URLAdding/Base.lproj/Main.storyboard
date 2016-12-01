@@ -301,9 +301,10 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gBg-l6-MDo" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item 1" id="kQ3-sy-xly"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZDe-BW-kGj">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ZDe-BW-kGj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" cyan="1" magenta="1" yellow="0.25" black="0.25" alpha="1" colorSpace="custom" customColorSpace="genericCMYKColorSpace"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -316,6 +317,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="yds-wv-8l6"/>
+        <segue reference="WfT-oR-c56"/>
     </inferredMetricsTieBreakers>
 </document>

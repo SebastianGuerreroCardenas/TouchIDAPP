@@ -67,6 +67,13 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        imageView.contentMode = .scaleAspectFit
+        // 4
+        let image = UIImage(named: "logo.png")
+        imageView.image = image
+        // 5
+        navigationItem.titleView = imageView
         generateWebList()
         webTable.reloadData()
 
