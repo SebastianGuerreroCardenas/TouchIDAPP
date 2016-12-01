@@ -258,6 +258,14 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PgE-Bb-j1g">
+                                <rect key="frame" x="73" y="385" width="225" height="64"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <segue destination="hJH-wE-zo3" kind="show" identifier="backToMenu" id="yds-wv-8l6"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -307,4 +315,7 @@
             <point key="canvasLocation" x="527.20000000000005" y="-433.13343328335833"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="yds-wv-8l6"/>
+    </inferredMetricsTieBreakers>
 </document>
