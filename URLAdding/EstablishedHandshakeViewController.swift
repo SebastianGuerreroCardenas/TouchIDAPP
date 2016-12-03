@@ -11,12 +11,17 @@ import UIKit
 class EstablishedHandshakeViewController: UIViewController {
     
     @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var successMsg: UILabel!
     var data: [Any] = []
     var timeLeft: Int = 0
     var timer: Timer? = nil
+    
+    var url: String = ""
+    var username: String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.successMsg.text = "Successfully performed setup with \(url) as \(username)"
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
         imageView.contentMode = .scaleAspectFit
         // 4

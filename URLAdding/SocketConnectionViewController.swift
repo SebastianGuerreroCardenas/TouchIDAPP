@@ -85,6 +85,8 @@ class SocketConnectionViewController: UIViewController {
         if (segue.identifier == "established") {
             let finalDestination = segue.destination as? EstablishedHandshakeViewController
             finalDestination?.data = sender as! [Any]
+            finalDestination?.url = self.url
+            finalDestination?.username = self.username
         }
     }
     

@@ -9,14 +9,19 @@
 import UIKit
 
 class LoginConfirmationViewController: UIViewController {
+    
+    var url: String = ""
+    var username: String = ""
 
     @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var successMsg: UILabel!
 //    var data: [Any] = []
     var timeLeft: Int = 0
     var timer: Timer? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        successMsg.text = "Successfully logged into \(url) as \(username)"
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
         imageView.contentMode = .scaleAspectFit
         // 4

@@ -78,6 +78,16 @@ class LoginViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+        if (segue.identifier == "loginConfirm"){
+            let finalDestination = segue.destination as? LoginConfirmationViewController
+            finalDestination?.url = self.url
+            finalDestination?.username = self.username
+        }
+    }
+    
 
     /*
     // MARK: - Navigation
