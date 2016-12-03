@@ -32,7 +32,10 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     @IBAction func startTouchIDAction(_ sender: Any) {
-        touckID()    }
+        touckID(true)    }
+    
+    @IBAction func startLoginAction(_ sender: AnyObject) {
+        touckID(false)    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "AuthenticationSegue") {
@@ -41,7 +44,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func touckID() {
+    func touckID(_ handshake: Bool) {
         let authentificationContext = LAContext()
         var error: NSError?
         
@@ -49,7 +52,7 @@ class ViewController: UIViewController {
             //touch id
             authentificationContext.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: "ONLY HUMANS", reply: { (success, error) in
                 if success {
-                    self.navigateToAuthenticatedVC()
+                    self.navigateToAuthenticatedVC(handshake)
                 } else {
                     if let error = error as? NSError {
                         let message = self.errorMessageForLAErrorCode(errorCode: error.code)
@@ -96,11 +99,24 @@ class ViewController: UIViewController {
         
     }
     
-    func navigateToAuthenticatedVC() {
-        if let loggedInVC = self.storyboard?.instantiateViewController(withIdentifier: "socketConnectionC") as? SocketConnectionViewController {
-            DispatchQueue.main.async {
-                loggedInVC.url = self.url
-                self.navigationController?.pushViewController(loggedInVC, animated: true)
+    func navigateToAuthenticatedVC(_ handshake: Bool) {
+        if handshake{
+            if let loggedInVC = self.storyboard?.instantiateViewController(withIdentifier: "socketConnectionC") as? SocketConnectionViewController {
+                DispatchQueue.main.async {
+                    loggedInVC.url = self.url
+                    loggedInVC.name = self.name
+                    loggedInVC.username = self.username
+                    self.navigationController?.pushViewController(loggedInVC, animated: true)
+                }
+                }
+        } else {
+            if let loginVC = self.storyboard?.instantiateViewController(withIdentifier: "SocketLogin") as? LoginViewController {
+                DispatchQueue.main.async {
+                    loginVC.url = self.url
+                    loginVC.name = self.name
+                    loginVC.username = self.username
+                    self.navigationController?.pushViewController(loginVC, animated: true)
+                }
             }
         }
     }

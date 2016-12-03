@@ -81,11 +81,28 @@ class SocketIOManager: NSObject {
         return true
     }
     
+    func loadLoginHandlers(inst: LoginViewController) -> Bool {
+        socket.on("connect") {data, ack in
+            print(data)
+            print("WOOOOOO")
+            inst.handleConnection()
+        }
+        
+        socket.on("login") {data, ack in
+            print(data)
+        }
+        
+        self.socket.onAny {
+            print("Got event: \($0.event), with items: \($0.items!)")
+        }
+        return true
+    }
+    
     /**
      Pings the server to perform a login
      - parameter parameters: The user's credentials to sign in
     */
-    func login(parameters: [String: AnyObject]) -> Bool {
+    func login(parameters: [String: String]) -> Bool {
         socket.emit("login", parameters)
         return true
     }

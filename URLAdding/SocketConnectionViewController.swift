@@ -13,6 +13,8 @@ class SocketConnectionViewController: UIViewController {
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let IOManager = SocketIOManager.sharedInstance
     var url: String = ""
+    var name: String = ""
+    var username: String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()

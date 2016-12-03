@@ -166,9 +166,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LCe-ru-Xdp">
-                                <rect key="frame" x="130" y="416" width="114" height="30"/>
+                                <rect key="frame" x="130" y="377" width="114" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Trigger Touch ID"/>
+                                <state key="normal" title="First Time Setup"/>
                                 <connections>
                                     <action selector="startTouchIDAction:" destination="YlI-lU-5rs" eventType="touchUpInside" id="mR9-En-yE0"/>
                                 </connections>
@@ -187,6 +187,14 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fHr-v5-32C">
+                                <rect key="frame" x="132" y="436" width="110" height="53"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Login!"/>
+                                <connections>
+                                    <action selector="startLoginAction:" destination="YlI-lU-5rs" eventType="touchUpInside" id="fxS-VO-f9T"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -200,6 +208,58 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RhH-Ox-7A0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2460" y="-442.12893553223392"/>
+        </scene>
+        <!--Login View Controller-->
+        <scene sceneID="KIP-eX-CQi">
+            <objects>
+                <viewController storyboardIdentifier="SocketLogin" id="ash-x3-EO3" customClass="LoginViewController" customModule="URLAdding" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fKg-rd-tsb"/>
+                        <viewControllerLayoutGuide type="bottom" id="3eJ-X8-tm6"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="rnc-sa-leL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Attempting Login to:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wav-fd-JdE">
+                                <rect key="frame" x="98" y="126" width="178" height="49"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="url" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mQ9-hZ-7gl">
+                                <rect key="frame" x="98" y="183" width="158" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="With username:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kX3-R9-YC7">
+                                <rect key="frame" x="98" y="245" width="158" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rhj-F1-66P">
+                                <rect key="frame" x="98" y="312" width="158" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="urlLabel" destination="mQ9-hZ-7gl" id="Yni-eU-Q9u"/>
+                        <outlet property="usernameLabel" destination="rhj-F1-66P" id="mur-H1-IIH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="51J-XD-kYb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3336.8000000000002" y="-1118.5907046476761"/>
         </scene>
         <!--Socket Connection View Controller-->
         <scene sceneID="WY3-iG-CPp">
@@ -301,7 +361,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gBg-l6-MDo" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item 1" id="kQ3-sy-xly"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ZDe-BW-kGj">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZDe-BW-kGj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" cyan="1" magenta="1" yellow="0.25" black="0.25" alpha="1" colorSpace="custom" customColorSpace="genericCMYKColorSpace"/>
