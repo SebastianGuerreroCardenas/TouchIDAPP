@@ -255,11 +255,57 @@
                     <connections>
                         <outlet property="urlLabel" destination="mQ9-hZ-7gl" id="Yni-eU-Q9u"/>
                         <outlet property="usernameLabel" destination="rhj-F1-66P" id="mur-H1-IIH"/>
+                        <segue destination="bIt-Wu-hvh" kind="show" identifier="loginConfirm" id="e52-g7-tPu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="51J-XD-kYb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3336.8000000000002" y="-1118.5907046476761"/>
+        </scene>
+        <!--Login Confirmation View Controller-->
+        <scene sceneID="9Xh-zP-exd">
+            <objects>
+                <viewController id="bIt-Wu-hvh" customClass="LoginConfirmationViewController" customModule="URLAdding" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2S6-LD-503"/>
+                        <viewControllerLayoutGuide type="bottom" id="05l-Vq-WUM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="RpN-Fb-69B">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Success msg" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BHK-xC-Uol">
+                                <rect key="frame" x="44" y="151" width="287" height="64"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Redirecting In: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Oe-k7-pff">
+                                <rect key="frame" x="78" y="323" width="115" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CLe-mv-VwN">
+                                <rect key="frame" x="227" y="323" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="label" destination="CLe-mv-VwN" id="aRa-yL-ZkP"/>
+                        <segue destination="hJH-wE-zo3" kind="show" identifier="loginToMenu" id="Im4-gK-P4O"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dpr-es-kDZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4156" y="-1119.4902548725638"/>
         </scene>
         <!--Socket Connection View Controller-->
         <scene sceneID="WY3-iG-CPp">
@@ -318,10 +364,9 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PgE-Bb-j1g">
-                                <rect key="frame" x="73" y="385" width="225" height="64"/>
+                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PgE-Bb-j1g">
+                                <rect key="frame" x="0.0" y="0.0" width="3" height="4"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
                                 <connections>
                                     <segue destination="hJH-wE-zo3" kind="show" identifier="backToMenu" id="yds-wv-8l6"/>
                                 </connections>
@@ -337,10 +382,10 @@
             </objects>
             <point key="canvasLocation" x="4156" y="-442.12893553223392"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Tab View Controller-->
         <scene sceneID="15H-xT-vTl">
             <objects>
-                <tabBarController id="2tx-5Z-G5H" sceneMemberID="viewController">
+                <tabBarController id="2tx-5Z-G5H" customClass="TabViewController" customModule="URLAdding" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="6wC-3n-d4e">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -355,11 +400,11 @@
             </objects>
             <point key="canvasLocation" x="-422" y="-105"/>
         </scene>
-        <!--Item 1-->
+        <!--Existing URLs-->
         <scene sceneID="LVS-Uj-Dcc">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gBg-l6-MDo" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item 1" id="kQ3-sy-xly"/>
+                <navigationController title="Existing URLs" automaticallyAdjustsScrollViewInsets="NO" id="gBg-l6-MDo" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item 1" id="kQ3-sy-xly" userLabel="Existing URLs"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZDe-BW-kGj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>

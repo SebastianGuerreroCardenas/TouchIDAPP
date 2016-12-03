@@ -88,6 +88,11 @@ class SocketIOManager: NSObject {
             inst.handleConnection()
         }
         
+        socket.on("backFromLogin") {data, ack in
+            print(data)
+            inst.transitionBackToMenu()
+        }
+        
         socket.on("login") {data, ack in
             print(data)
         }

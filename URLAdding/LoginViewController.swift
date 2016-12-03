@@ -21,32 +21,42 @@ class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        imageView.contentMode = .scaleAspectFit
+        // 4
+        let image = UIImage(named: "logo.png")
+        imageView.image = image
+        // 5
+        navigationItem.titleView = imageView
+
         self.urlLabel.text = self.url
         self.usernameLabel.text = self.username
         self.sendLoginAttempt()
         // Do any additional setup after loading the view.
     }
     
+    /**
+     Prepares new socket connection for login and loads handlers
+    */
     func sendLoginAttempt(){
         self.IOManager.closeConnection()
         self.overwriteSocket()
         IOManager.loadLoginHandlers(inst: self)
-//        self.IOManager.establishConnection()
-//        if (self.overwriteSocket() && IOManager.loadLoginHandlers(inst: self)){
-////            self.IOManager.establishConnection()
-//            print(self.url)
-//            var params: [String : String] = [:]
-//            params["name"] = self.name
-//            params["username"] = self.name
-//            IOManager.login(parameters: params)
-//        }
     }
     
+    /**
+     Callback called after it receives something on the connect message from the server
+    */
     func handleConnection(){
         var params: [String : String] = [:]
         params["name"] = self.name
         params["username"] = self.username
         IOManager.login(parameters: params)
+    }
+    
+    func transitionBackToMenu(){
+        sleep(1)
+        performSegue(withIdentifier: "loginConfirm", sender: "")
     }
     
     func overwriteSocket() -> Bool{

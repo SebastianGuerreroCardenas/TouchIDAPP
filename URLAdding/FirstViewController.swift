@@ -17,6 +17,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     
     var webList = [String]()
+    var displayTitles = [String]()
     
     
     @IBOutlet weak var webTable: UITableView!
@@ -27,7 +28,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "cell")
-        cell.textLabel?.text = webList[indexPath.row]
+        cell.textLabel?.text = displayTitles[indexPath.row]
         return cell
     }
     
@@ -132,26 +133,32 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func generateWebList() {
         webList = ["wow", "yes"]
+        displayTitles = ["wow", "yes"]
         let context = appDelegate.persistentContainer.viewContext
         
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Websites")
         request.returnsObjectsAsFaults = false
         
         var urls = [String]()
+        var displayNames = [String]()
         
         do {
             let results = try context.fetch(request)
             
             if results.count > 0 {
                 for result in results as! [NSManagedObject]{
-                    if let url = result.value(forKey: "url") as? String {
+                    if let url = result.value(forKey: "url") as? String,
+                        let name = result.value(forKey: "username") as? String{
                         urls.append(url)
+                        displayNames.append(url + " as " + name)
                     }
                 }
                 webList = urls
+                displayTitles = displayNames
             }
             else {
                 webList = ["no data"]
+                displayNames = ["no data"]
             }
         }
         catch {

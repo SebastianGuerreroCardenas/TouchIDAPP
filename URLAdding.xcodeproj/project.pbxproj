@@ -12,6 +12,8 @@
 		7B271BB21DEC9B380078C097 /* SocketConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B271BB11DEC9B380078C097 /* SocketConnectionViewController.swift */; };
 		7B271BB41DECB5430078C097 /* EstablishedHandshakeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B271BB31DECB5430078C097 /* EstablishedHandshakeViewController.swift */; };
 		7BBA83641DF3224300B71EDA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BBA83631DF3224300B71EDA /* LoginViewController.swift */; };
+		7BBA83661DF332DB00B71EDA /* LoginConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BBA83651DF332DB00B71EDA /* LoginConfirmationViewController.swift */; };
+		7BBA83681DF33B6F00B71EDA /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BBA83671DF33B6F00B71EDA /* TabViewController.swift */; };
 		A6AA3DD8C3336E821AD53915 /* Pods_URLAdding.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75A80D82ED05C7787FF4A5C4 /* Pods_URLAdding.framework */; };
 		B91622C71DE4A164009D935C /* SocketIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91622C61DE4A164009D935C /* SocketIOManager.swift */; };
 		B91622C91DE4B22D009D935C /* URLCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91622C81DE4B22D009D935C /* URLCoreDataManager.swift */; };
@@ -35,6 +37,8 @@
 		7B271BB11DEC9B380078C097 /* SocketConnectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketConnectionViewController.swift; sourceTree = "<group>"; };
 		7B271BB31DECB5430078C097 /* EstablishedHandshakeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EstablishedHandshakeViewController.swift; sourceTree = "<group>"; };
 		7BBA83631DF3224300B71EDA /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		7BBA83651DF332DB00B71EDA /* LoginConfirmationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginConfirmationViewController.swift; sourceTree = "<group>"; };
+		7BBA83671DF33B6F00B71EDA /* TabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
 		B91622C61DE4A164009D935C /* SocketIOManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketIOManager.swift; sourceTree = "<group>"; };
 		B91622C81DE4B22D009D935C /* URLCoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLCoreDataManager.swift; sourceTree = "<group>"; };
 		B91622DA1DEE6A03009D935C /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
@@ -118,6 +122,8 @@
 				7B271BB11DEC9B380078C097 /* SocketConnectionViewController.swift */,
 				7B271BB31DECB5430078C097 /* EstablishedHandshakeViewController.swift */,
 				7BBA83631DF3224300B71EDA /* LoginViewController.swift */,
+				7BBA83651DF332DB00B71EDA /* LoginConfirmationViewController.swift */,
+				7BBA83671DF33B6F00B71EDA /* TabViewController.swift */,
 			);
 			path = URLAdding;
 			sourceTree = "<group>";
@@ -247,6 +253,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7BBA83681DF33B6F00B71EDA /* TabViewController.swift in Sources */,
+				7BBA83661DF332DB00B71EDA /* LoginConfirmationViewController.swift in Sources */,
 				B985437A1DC0208000E4F2B4 /* URLAdding.xcdatamodeld in Sources */,
 				B98543741DC0208000E4F2B4 /* ViewController.swift in Sources */,
 				B98543721DC0208000E4F2B4 /* AppDelegate.swift in Sources */,

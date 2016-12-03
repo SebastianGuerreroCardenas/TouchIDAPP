@@ -1,20 +1,20 @@
 //
-//  EstablishedHandshakeViewController.swift
+//  LoginConfirmationViewController.swift
 //  URLAdding
 //
-//  Created by Jordan Stapinski on 11/28/16.
+//  Created by Jordan Stapinski on 12/3/16.
 //  Copyright © 2016 Sebastian Guerrero. All rights reserved.
 //
 
 import UIKit
 
-class EstablishedHandshakeViewController: UIViewController {
-    
+class LoginConfirmationViewController: UIViewController {
+
     @IBOutlet weak var label: UILabel!
-    var data: [Any] = []
+//    var data: [Any] = []
     var timeLeft: Int = 0
     var timer: Timer? = nil
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
@@ -31,12 +31,12 @@ class EstablishedHandshakeViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         timeLeft = 3
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector:#selector(EstablishedHandshakeViewController.countDownTick), userInfo: nil, repeats: true)
-//        while (x > 0) {
-//            label.text = String(x)
-//            label.reloadInputViews()
-//            sleep(1)
-//            x = x - 1
-//        }
+        //        while (x > 0) {
+        //            label.text = String(x)
+        //            label.reloadInputViews()
+        //            sleep(1)
+        //            x = x - 1
+        //        }
         label.text = String(timeLeft)
     }
     
@@ -46,26 +46,28 @@ class EstablishedHandshakeViewController: UIViewController {
         if (timeLeft == 0) {
             timer!.invalidate()
             timer=nil
-            performSegue(withIdentifier: "backToMenu", sender: "")
+            performSegue(withIdentifier: "loginToMenu", sender: "")
         } else {
             timeLeft = timeLeft - 1
             label.text = String(timeLeft)
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "backToMenu") {
+        if (segue.identifier == "loginToMenu") {
             let finalDestination = segue.destination as? FirstViewController
             //finalDestination?.data = sender as! [Any]
             finalDestination?.navigationItem.hidesBackButton = true
-
+            
         }
     }
+
+    
 
     /*
     // MARK: - Navigation
