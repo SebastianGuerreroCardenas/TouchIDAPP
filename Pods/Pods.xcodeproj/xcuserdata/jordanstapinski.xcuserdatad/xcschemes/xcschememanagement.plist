@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>RNCryptor.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Socket.IO-Client-Swift.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -17,22 +22,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>51CFC3612B9E16C08B9B744D197C4D6E</key>
+		<key>2F22169B7E8797C92069470AD1F1B249</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>94E33F1DCA2F20E15AF7D6300B5CC498</key>
+		<key>4518DEB40AF7D8C80584F8F9BA539C1F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B387F99AFE8CABE5458953581F8E4008</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E1BF10A255A7A0597705D84D01811181</key>
+		<key>9B08E18EF2EE03EB2DC4C9CD1BEFDF10</key>
 		<dict>
 			<key>primary</key>
 			<true/>

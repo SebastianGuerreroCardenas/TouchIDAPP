@@ -60,7 +60,7 @@ class SocketIOManager: NSObject {
             print(data)
         }
         
-        socket.on("backFromHandshake") {data, ack in
+        socket.on("server_response_init_connect") {data, ack in
             print("Here")
             print(data)
             inst.handleHandshake(data: data)

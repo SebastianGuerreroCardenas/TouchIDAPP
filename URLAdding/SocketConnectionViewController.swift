@@ -15,6 +15,7 @@ class SocketConnectionViewController: UIViewController {
     var url: String = ""
     var name: String = ""
     var username: String = ""
+    //var token: String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,6 +77,7 @@ class SocketConnectionViewController: UIViewController {
      - parameter data: The data returned by the server emission
      */
     func handleHandshake(data: [Any]){
+        //data will be random string, need to store in core data
         print(data)
         print("Handling info from server now")
         performSegue(withIdentifier: "established", sender: data)

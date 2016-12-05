@@ -1,12 +1,15 @@
 PODS:
+  - RNCryptor (5.0.1)
   - Socket.IO-Client-Swift (8.1.2)
 
 DEPENDENCIES:
+  - RNCryptor
   - Socket.IO-Client-Swift (~> 8.1.2)
 
 SPEC CHECKSUMS:
+  RNCryptor: 2e352a488779d1a9184ab629be22a7c5bc84acb5
   Socket.IO-Client-Swift: 542d82e6708f9901b3f6c1d134fb60fa0d09d4d1
 
-PODFILE CHECKSUM: 3231f8558d4785a89effa81137cc5be66784fe5f
+PODFILE CHECKSUM: 6bc7a4189cfcd7b7822bb900d34b7f0ef08659e4
 
 COCOAPODS: 1.1.1

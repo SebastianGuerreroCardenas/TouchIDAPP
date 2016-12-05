@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RNCryptor
 
 class LoginViewController: UIViewController {
     
@@ -15,6 +16,7 @@ class LoginViewController: UIViewController {
     var url: String = ""
     var name: String = ""
     var username: String = ""
+    var token: String = ""
     
     @IBOutlet weak var urlLabel: UILabel!
     @IBOutlet weak var usernameLabel: UILabel!
@@ -51,6 +53,7 @@ class LoginViewController: UIViewController {
         var params: [String : String] = [:]
         params["name"] = self.name
         params["username"] = self.username
+        params["token"] = self.token
         IOManager.login(parameters: params)
     }
     

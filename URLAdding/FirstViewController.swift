@@ -35,12 +35,31 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         urlSelected = webList[indexPath.row]
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let destination = storyboard.instantiateViewController(withIdentifier: "websiteDetails") as! ViewController
-        destination.url = urlSelected
         let storedCreds = findCredentials(url: urlSelected)
-        destination.name = storedCreds["name"] as! String
-        destination.username = storedCreds["username"] as! String
-        navigationController?.pushViewController(destination, animated: true)
+        let token = storedCreds["token"] as! String
+        if (token == "randomToken") {
+            //run handshake
+            let destination = storyboard.instantiateViewController(withIdentifier: "socketConnectionC") as! SocketConnectionViewController
+            destination.url = urlSelected
+            destination.name = storedCreds["name"] as! String
+            destination.username = storedCreds["username"] as! String
+            //destination.token = token
+            navigationController?.pushViewController(destination, animated: true)
+        } else {
+            //Run login
+            let destination = storyboard.instantiateViewController(withIdentifier: "SocketLogin") as! LoginViewController
+            destination.url = urlSelected
+            destination.name = storedCreds["name"] as! String
+            destination.username = storedCreds["username"] as! String
+            destination.token = token
+            navigationController?.pushViewController(destination, animated: true)
+        }
+//        let destination = storyboard.instantiateViewController(withIdentifier: "socketLogin") as! LoginViewController
+//        destination.url = urlSelected
+//        destination.name = storedCreds["name"] as! String
+//        destination.username = storedCreds["username"] as! String
+//        destination.token = token
+//        navigationController?.pushViewController(destination, animated: true)
 //        urlSelected = webList[indexPath.row]
 //        let storyBoard = storyboard?.instantiateViewController(withIdentifier: "websiteDetails")
         //viewController.url = urlSelected
@@ -86,6 +105,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
             let indexPath = self.webTable.indexPathForSelectedRow {
             let selectedURL = webList[indexPath.row]
             print(findCredentials(url: selectedURL))
+            //HERE
             nextScene.url = selectedURL
             //IOManager.startHandshake(parameters: [:])
 
@@ -112,9 +132,11 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
                         if urlGotBack == url {
                             let finalName = result.value(forKey: "name")
                             let finalUsername = result.value(forKey: "username")
+                            let finalToken = result.value(forKey: "token")
                             var finalDict: [String: Any] = [:]
                             finalDict["name"] = finalName
                             finalDict["username"] = finalUsername
+                            finalDict["token"] = finalToken
                             return finalDict
                         }
                     }
