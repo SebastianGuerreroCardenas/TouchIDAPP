@@ -54,12 +54,25 @@ class LoginViewController: UIViewController {
         params["name"] = self.name
         params["username"] = self.username
         params["token"] = self.token
-        IOManager.login(parameters: params)
+        IOManager.loginHash(parameters: params, randomElt: "16")
     }
     
     func transitionBackToMenu(){
-        sleep(1)
+        //sleep(1)
         performSegue(withIdentifier: "loginConfirm", sender: "")
+    }
+    
+    func transitionToFailed(){
+        performSegue(withIdentifier: "failedLogin", sender: "")
+    }
+    
+    func handleLoginResult(result: String){
+        print(result)
+        if (result == "True"){
+            transitionBackToMenu()
+        } else {
+            transitionToFailed()
+        }
     }
     
     func overwriteSocket() -> Bool{

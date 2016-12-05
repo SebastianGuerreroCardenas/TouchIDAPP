@@ -1,15 +1,18 @@
 PODS:
+  - CryptoSwift (0.6.6)
   - RNCryptor (5.0.1)
   - Socket.IO-Client-Swift (8.1.2)
 
 DEPENDENCIES:
-  - RNCryptor
+  - CryptoSwift
+  - RNCryptor (~> 5.0.0)
   - Socket.IO-Client-Swift (~> 8.1.2)
 
 SPEC CHECKSUMS:
+  CryptoSwift: 88592381b73f36e192124539390a7c9bacda76af
   RNCryptor: 2e352a488779d1a9184ab629be22a7c5bc84acb5
   Socket.IO-Client-Swift: 542d82e6708f9901b3f6c1d134fb60fa0d09d4d1
 
-PODFILE CHECKSUM: 6bc7a4189cfcd7b7822bb900d34b7f0ef08659e4
+PODFILE CHECKSUM: a96cee48f69810a12ae6a555ee2f6d9e54d8bb2b
 
 COCOAPODS: 1.1.1

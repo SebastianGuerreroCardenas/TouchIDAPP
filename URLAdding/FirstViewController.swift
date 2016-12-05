@@ -13,6 +13,8 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var urlSelected = ""
+    let shm = saltHashManager()
+
     //let IOManager = SocketIOManager.sharedInstance
 
     
@@ -37,6 +39,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let storedCreds = findCredentials(url: urlSelected)
         let token = storedCreds["token"] as! String
+        appDelegate.credentials = storedCreds
         if (token == "randomToken") {
             //run handshake
             let destination = storyboard.instantiateViewController(withIdentifier: "socketConnectionC") as! SocketConnectionViewController
@@ -72,6 +75,8 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        shm.createHash(handshakeString: "a", rngString: "b")
+
         //Load event handlers and finish establishing connection
         //IOManager.handShakeResponse()
 //        IOManager.establishConnection()

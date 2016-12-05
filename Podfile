@@ -7,5 +7,7 @@ target 'URLAdding' do
 
   # Pods for URLAdding
    pod 'Socket.IO-Client-Swift', '~> 8.1.2' # Or latest version
-   pod 'RNCryptor'
+   pod 'RNCryptor', '~> 5.0.0'
+   pod 'CryptoSwift'
+
 end

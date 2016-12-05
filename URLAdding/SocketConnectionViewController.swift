@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class SocketConnectionViewController: UIViewController {
     
@@ -80,6 +81,43 @@ class SocketConnectionViewController: UIViewController {
         //data will be random string, need to store in core data
         print(data)
         print("Handling info from server now")
+        let context = appDelegate.persistentContainer.viewContext
+
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Websites")
+        request.returnsObjectsAsFaults = false
+        
+        var urls = [String]()
+        
+        do {
+            let results = try context.fetch(request)
+            
+            if results.count > 0 {
+                for result in results as! [NSManagedObject]{
+                    if let urlGotBack = result.value(forKey: "url") as? String,
+                        let nameGotBack = result.value(forKey: "username") as? String{
+                        if (urlGotBack == url) && (nameGotBack == username) {
+                            result.setValue(data as! String, forKey: "token")
+//                            let finalName = result.value(forKey: "name")
+//                            let finalUsername = result.value(forKey: "username")
+//                            let finalToken = result.value(forKey: "token")
+//                            var finalDict: [String: Any] = [:]
+//                            finalDict["name"] = finalName
+//                            finalDict["username"] = finalUsername
+//                            finalDict["token"] = finalToken
+//                            return finalDict
+                        }
+                    }
+                }
+            }
+            else {
+                print("No results")
+            }
+        }
+        catch {
+            //process erros
+            print("Error")
+        }
+
         performSegue(withIdentifier: "established", sender: data)
     }
     

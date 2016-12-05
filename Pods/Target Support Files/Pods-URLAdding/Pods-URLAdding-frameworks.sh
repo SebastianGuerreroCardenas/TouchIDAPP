@@ -84,10 +84,12 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "$BUILT_PRODUCTS_DIR/CryptoSwift/CryptoSwift.framework"
   install_framework "$BUILT_PRODUCTS_DIR/RNCryptor/RNCryptor.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Socket.IO-Client-Swift/SocketIO.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "$BUILT_PRODUCTS_DIR/CryptoSwift/CryptoSwift.framework"
   install_framework "$BUILT_PRODUCTS_DIR/RNCryptor/RNCryptor.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Socket.IO-Client-Swift/SocketIO.framework"
 fi

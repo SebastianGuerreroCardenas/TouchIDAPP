@@ -18,8 +18,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var usernameLabel: UILabel!
     
+    let shm = saltHashManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        shm.createHash(handshakeString: "a", rngString: "b")
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
         imageView.contentMode = .scaleAspectFit
         // 4

@@ -256,11 +256,42 @@
                         <outlet property="urlLabel" destination="mQ9-hZ-7gl" id="Yni-eU-Q9u"/>
                         <outlet property="usernameLabel" destination="rhj-F1-66P" id="mur-H1-IIH"/>
                         <segue destination="bIt-Wu-hvh" kind="show" identifier="loginConfirm" id="e52-g7-tPu"/>
+                        <segue destination="ZEl-sH-WBU" kind="show" identifier="failedLogin" id="BFg-xl-amo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="51J-XD-kYb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3336.8000000000002" y="-1118.5907046476761"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="c15-Qo-JwO">
+            <objects>
+                <viewController storyboardIdentifier="FailedVC" id="ZEl-sH-WBU" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ohh-Np-0KL"/>
+                        <viewControllerLayoutGuide type="bottom" id="BlP-0o-MIB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="g80-a0-GEk">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Login failed, returning to menu in 3 seconds" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aQB-1H-cq7">
+                                <rect key="frame" x="63" y="270" width="248" height="126"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="hJH-wE-zo3" kind="show" identifier="loginBackToMenu" id="G6K-Vt-Par"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="j9z-vU-mRm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4156" y="-1786.0569715142431"/>
         </scene>
         <!--Login Confirmation View Controller-->
         <scene sceneID="9Xh-zP-exd">
@@ -438,6 +469,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="yds-wv-8l6"/>
+        <segue reference="G6K-Vt-Par"/>
     </inferredMetricsTieBreakers>
 </document>

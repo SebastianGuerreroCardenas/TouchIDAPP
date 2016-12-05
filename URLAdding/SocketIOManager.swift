@@ -13,6 +13,7 @@ let serverPath = "http://127.0.0.1:8080/"
 
 class SocketIOManager: NSObject {
     static let sharedInstance = SocketIOManager()
+    let saltHash = saltHashManager()
     
     var socket = SocketIOClient(socketURL: URL(string: serverPath)!, config: [.log(false), .forcePolling(true)])
     override init() {
@@ -45,7 +46,7 @@ class SocketIOManager: NSObject {
      - parameter parameters: List of credentials to establish handshake
     */
     func startHandshake(parameters: [String: AnyObject]) -> Bool {
-        socket.emit("init_connect", parameters)
+        socket.emit("init_connect", parameters)//parameters)
         return true
     }
     
@@ -60,7 +61,7 @@ class SocketIOManager: NSObject {
             print(data)
         }
         
-        socket.on("server_response_init_connect") {data, ack in
+        socket.on("init_token") {data, ack in
             print("Here")
             print(data)
             inst.handleHandshake(data: data)
@@ -97,6 +98,18 @@ class SocketIOManager: NSObject {
             print(data)
         }
         
+        socket.on("loginRN") {data, ack in
+            print(data)
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            self.loginHash(parameters: appDelegate.credentials, randomElt: data[0] as! String)
+        }
+        
+        socket.on("loginResult"){ data, ack in
+            print("loginResult")
+            print(data)
+            inst.handleLoginResult(result: data as! String)
+        }
+        
         self.socket.onAny {
             print("Got event: \($0.event), with items: \($0.items!)")
         }
@@ -107,8 +120,12 @@ class SocketIOManager: NSObject {
      Pings the server to perform a login
      - parameter parameters: The user's credentials to sign in
     */
-    func login(parameters: [String: String]) -> Bool {
-        socket.emit("login", parameters)
+    func loginHash(parameters: [String: Any], randomElt: String) -> Bool {
+
+        //parameters["hash"] = "16" //actually this is the hashed value
+        var newParams: [String : Any] = parameters
+        newParams["hash"] = self.saltHash.createHash(handshakeString: "Handshake from CoreData", rngString: "Random passed in")
+        socket.emit("login", newParams)
         return true
     }
     
