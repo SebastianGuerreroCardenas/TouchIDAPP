@@ -99,7 +99,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         if authentificationContext.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error ) {
             //touch id
-            authentificationContext.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: "ONLY HUMANS", reply: { (success, error) in
+            authentificationContext.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: "ONLY HUMANS", reply:  { (success, error) in DispatchQueue.main.async {
                 if success {
                     if handshake {
                     self.moveToHandshakePage()
@@ -114,7 +114,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
                         self.showAlertViewAfterEvaluation(message: message)
                     }
                 }
-            })
+                }})
         }else {
             //showAlertViewForNoBiometrics()
             return
