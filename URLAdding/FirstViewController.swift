@@ -16,6 +16,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var urlSelected = ""
     let shm = saltHashManager()
+    var credentials: [String : Any] = [:]
 
     //let IOManager = SocketIOManager.sharedInstance
 
@@ -39,7 +40,8 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //        if self.authedWithTID(){
         urlSelected = webList[indexPath.row]
-        let storedCreds = findCredentials(url: urlSelected)
+        let username = displayTitles[indexPath.row].components(separatedBy: "as ")[1]
+        let storedCreds = findCredentials(url: urlSelected, username: username)
         let token = storedCreds["token"] as! String
         appDelegate.credentials = storedCreds
         if (token == "randomToken") {
@@ -65,7 +67,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func moveToHandshakePage(){
-        let storedCreds = findCredentials(url: urlSelected)
+        let storedCreds = self.credentials
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
 
         let destination = storyboard.instantiateViewController(withIdentifier: "socketConnectionC") as! SocketConnectionViewController
@@ -77,7 +79,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func moveToLoginPage(){
-        let storedCreds = findCredentials(url: urlSelected)
+        let storedCreds = self.credentials
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
 
         let destination = storyboard.instantiateViewController(withIdentifier: "SocketLogin") as! LoginViewController
@@ -157,7 +159,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        shm.createHash(handshakeString: "a", rngString: "b")
+        //shm.createHash(handshakeString: "a", rngString: "b")
 
         //Load event handlers and finish establishing connection
         //IOManager.handShakeResponse()
@@ -191,7 +193,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
             let nextScene = segue.destination as? ViewController ,
             let indexPath = self.webTable.indexPathForSelectedRow {
             let selectedURL = webList[indexPath.row]
-            print(findCredentials(url: selectedURL))
+//            print(findCredentials(url: selectedURL))
             //HERE
             nextScene.url = selectedURL
             //IOManager.startHandshake(parameters: [:])
@@ -200,7 +202,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
     }
     
-    func findCredentials(url: String) -> [String: Any]{
+    func findCredentials(url: String, username: String) -> [String: Any]{
         //Either do an API call or use internals?
         //Assuming using internal data
         let context = appDelegate.persistentContainer.viewContext
@@ -215,8 +217,9 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
             
             if results.count > 0 {
                 for result in results as! [NSManagedObject]{
-                    if let urlGotBack = result.value(forKey: "url") as? String {
-                        if urlGotBack == url {
+                    if let urlGotBack = result.value(forKey: "url") as? String,
+                        let nameGotBack = result.value(forKey: "username") as? String{
+                        if (urlGotBack == url) && (nameGotBack == username) {
                             let finalName = result.value(forKey: "name")
                             let finalUsername = result.value(forKey: "username")
                             let finalToken = result.value(forKey: "token")
@@ -224,6 +227,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
                             finalDict["name"] = finalName
                             finalDict["username"] = finalUsername
                             finalDict["token"] = finalToken
+                            self.credentials = finalDict
                             return finalDict
                         }
                     }

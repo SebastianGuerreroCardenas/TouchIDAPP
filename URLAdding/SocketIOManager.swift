@@ -124,7 +124,7 @@ class SocketIOManager: NSObject {
 
         //parameters["hash"] = "16" //actually this is the hashed value
         var newParams: [String : Any] = parameters
-        newParams["hash"] = self.saltHash.createHash(handshakeString: "taco", rngString: randomElt)
+        newParams["hash"] = self.saltHash.createHash(handshakeString: newParams["token"] as! String, rngString: randomElt)
         socket.emit("loginHash", newParams)
         return true
     }
