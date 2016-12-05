@@ -8,6 +8,8 @@
 
 import UIKit
 import CoreData
+import LocalAuthentication
+
 
 class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -35,27 +37,17 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        if self.authedWithTID(){
         urlSelected = webList[indexPath.row]
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let storedCreds = findCredentials(url: urlSelected)
         let token = storedCreds["token"] as! String
         appDelegate.credentials = storedCreds
         if (token == "randomToken") {
             //run handshake
-            let destination = storyboard.instantiateViewController(withIdentifier: "socketConnectionC") as! SocketConnectionViewController
-            destination.url = urlSelected
-            destination.name = storedCreds["name"] as! String
-            destination.username = storedCreds["username"] as! String
-            //destination.token = token
-            navigationController?.pushViewController(destination, animated: true)
+            self.touckID(true)
         } else {
             //Run login
-            let destination = storyboard.instantiateViewController(withIdentifier: "SocketLogin") as! LoginViewController
-            destination.url = urlSelected
-            destination.name = storedCreds["name"] as! String
-            destination.username = storedCreds["username"] as! String
-            destination.token = token
-            navigationController?.pushViewController(destination, animated: true)
+            self.touckID(false)
         }
 //        let destination = storyboard.instantiateViewController(withIdentifier: "socketLogin") as! LoginViewController
 //        destination.url = urlSelected
@@ -69,8 +61,98 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
 //       rself.navigationController?.pushViewController(viewController!, animated: true)
 //        print(findCredentials(url: urlSelected))
         print(urlSelected)
+//    }
     }
+    
+    func moveToHandshakePage(){
+        let storedCreds = findCredentials(url: urlSelected)
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
 
+        let destination = storyboard.instantiateViewController(withIdentifier: "socketConnectionC") as! SocketConnectionViewController
+        destination.url = urlSelected
+        destination.name = storedCreds["name"] as! String
+        destination.username = storedCreds["username"] as! String
+        //destination.token = token
+        navigationController?.pushViewController(destination, animated: true)
+    }
+    
+    func moveToLoginPage(){
+        let storedCreds = findCredentials(url: urlSelected)
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+
+        let destination = storyboard.instantiateViewController(withIdentifier: "SocketLogin") as! LoginViewController
+        destination.url = urlSelected
+        destination.name = storedCreds["name"] as! String
+        destination.username = storedCreds["username"] as! String
+        let token = storedCreds["token"] as! String
+
+        destination.token = token
+        navigationController?.pushViewController(destination, animated: true)
+    }
+    
+    func authedWithTID(){
+        return touckID(true)
+    }
+    func touckID(_ handshake: Bool) {
+        let authentificationContext = LAContext()
+        var error: NSError?
+        
+        if authentificationContext.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error ) {
+            //touch id
+            authentificationContext.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: "ONLY HUMANS", reply: { (success, error) in
+                if success {
+                    if handshake {
+                    self.moveToHandshakePage()
+                        return
+                    } else {
+                        self.moveToLoginPage()
+                        return
+                    }
+                } else {
+                    if let error = error as? NSError {
+                        let message = self.errorMessageForLAErrorCode(errorCode: error.code)
+                        self.showAlertViewAfterEvaluation(message: message)
+                    }
+                }
+            })
+        }else {
+            //showAlertViewForNoBiometrics()
+            return
+        }
+    }
+    
+    func showAlertViewAfterEvaluation(message: String) {
+        //showAlertWithTitle(title: "Error", message: message)
+    }
+    
+    func errorMessageForLAErrorCode(errorCode: Int) -> String {
+        var message = ""
+        switch errorCode {
+        case LAError.appCancel.rawValue:
+            message = "fail"
+        case LAError.authenticationFailed.rawValue:
+            message = "fail"
+        case LAError.invalidContext.rawValue:
+            message = "fail"
+        case LAError.passcodeNotSet.rawValue:
+            message = "fail"
+        case LAError.systemCancel.rawValue:
+            message = "fail"
+        case LAError.touchIDLockout.rawValue:
+            message = "fail"
+        case LAError.touchIDNotAvailable.rawValue:
+            message = "fail"
+        case LAError.userCancel.rawValue:
+            message = "fail"
+        case LAError.userFallback.rawValue:
+            message = "fail"
+            
+        default:
+            message = "fail"
+        }
+        return message
+        
+    }
     
     
     override func viewDidLoad() {

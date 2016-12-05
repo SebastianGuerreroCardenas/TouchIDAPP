@@ -44,6 +44,7 @@ class LoginViewController: UIViewController {
         self.IOManager.closeConnection()
         self.overwriteSocket()
         IOManager.loadLoginHandlers(inst: self)
+//        IOManager.establishConnection()
     }
     
     /**
@@ -54,7 +55,8 @@ class LoginViewController: UIViewController {
         params["name"] = self.name
         params["username"] = self.username
         params["token"] = self.token
-        IOManager.loginHash(parameters: params, randomElt: "16")
+        IOManager.startLogin()
+        //IOManager.loginHash(parameters: params, randomElt: "16")
     }
     
     func transitionBackToMenu(){

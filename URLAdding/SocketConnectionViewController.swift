@@ -96,7 +96,7 @@ class SocketConnectionViewController: UIViewController {
                     if let urlGotBack = result.value(forKey: "url") as? String,
                         let nameGotBack = result.value(forKey: "username") as? String{
                         if (urlGotBack == url) && (nameGotBack == username) {
-                            result.setValue(data as! String, forKey: "token")
+                            result.setValue(data[0] as! String, forKey: "token")
 //                            let finalName = result.value(forKey: "name")
 //                            let finalUsername = result.value(forKey: "username")
 //                            let finalToken = result.value(forKey: "token")
@@ -108,6 +108,10 @@ class SocketConnectionViewController: UIViewController {
                         }
                     }
                 }
+
+                    try context.save()
+                    print("Saved")
+                    //showAlert(message: "data was saved")
             }
             else {
                 print("No results")

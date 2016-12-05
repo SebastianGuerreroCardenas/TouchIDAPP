@@ -107,7 +107,7 @@ class SocketIOManager: NSObject {
         socket.on("loginResult"){ data, ack in
             print("loginResult")
             print(data)
-            inst.handleLoginResult(result: data as! String)
+            inst.handleLoginResult(result: data[0] as! String)
         }
         
         self.socket.onAny {
@@ -124,9 +124,14 @@ class SocketIOManager: NSObject {
 
         //parameters["hash"] = "16" //actually this is the hashed value
         var newParams: [String : Any] = parameters
-        newParams["hash"] = self.saltHash.createHash(handshakeString: "Handshake from CoreData", rngString: "Random passed in")
-        socket.emit("login", newParams)
+        newParams["hash"] = self.saltHash.createHash(handshakeString: "taco", rngString: randomElt)
+        socket.emit("loginHash", newParams)
         return true
+    }
+    
+    func startLogin(){
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        socket.emit("startLogin", appDelegate.credentials)
     }
     
 //  Below function deprecated to be moved to above
