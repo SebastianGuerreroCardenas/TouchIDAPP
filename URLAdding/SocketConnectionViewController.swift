@@ -95,7 +95,9 @@ class SocketConnectionViewController: UIViewController {
     */
     @IBAction func sendVerification(sender: AnyObject){
         //Need to find out now if we are sending a setup or a request to sign-in
-        IOManager.startHandshake(parameters: [:])
+        var finalDict : [String : AnyObject] = [:]
+        finalDict["name"] = "Akash" as AnyObject?
+        IOManager.startHandshake(parameters: finalDict)
         
         //Info coming back from here is to be handled in some handler from before
         print("Seding out handshake, see server output")

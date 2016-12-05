@@ -45,7 +45,7 @@ class SocketIOManager: NSObject {
      - parameter parameters: List of credentials to establish handshake
     */
     func startHandshake(parameters: [String: AnyObject]) -> Bool {
-        socket.emit("handshake", parameters)
+        socket.emit("init_connect", parameters)
         return true
     }
     
