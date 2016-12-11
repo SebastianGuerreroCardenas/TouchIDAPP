@@ -18,6 +18,7 @@ class URLCoreDataManager: NSObject {
     var username: String = ""
     var token: String = ""
     
+    //Get the credentials for this website
     init(url: String) {
         super.init()
         fetchWebsite(urlToGet: url)
@@ -37,17 +38,19 @@ class URLCoreDataManager: NSObject {
             
             if results.count > 0 {
                 for result in results as! [NSManagedObject]{
-                    
+                    //Gets the parameters for the user from NSCoreData as needed
                     if let durl = result.value(forKey: "url") as? String {
                         if durl == urlToGet {
                             self.url = durl
-                            
+                            //Gets name
                             if let dname = result.value(forKey: "name") as? String {
                                 self.name = dname
                             }
+                            //Gets username
                             if let dusername = result.value(forKey: "username") as? String {
                                 self.username = dusername
                             }
+                            //Gets randomized token, to be hashed later
                             if let dtoken = result.value(forKey: "token") as? String {
                                 self.token = dtoken
                             }

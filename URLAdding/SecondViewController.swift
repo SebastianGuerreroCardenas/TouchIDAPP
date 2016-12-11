@@ -19,13 +19,13 @@ class SecondViewController: UIViewController {
     @IBOutlet weak var URLInput: UITextField!
     @IBOutlet weak var usernameInput: UITextField!
     
+    //NOTE: This ViewController lets users add URLs and usernames into the system
     
+    //Called upon submitting information from the form. This saves info into NSCoreData to be used in the future without having to repeat entering in user info.
     @IBAction func addURLDataAction(_ sender: AnyObject) {
         let context = appDelegate.persistentContainer.viewContext
         
         let newWebsite = NSEntityDescription.insertNewObject(forEntityName: "Websites", into: context)
-        
-        //need to check that the input fields are not empty
         
         newWebsite.setValue(nameInput.text, forKey: "name")
         newWebsite.setValue(URLInput.text, forKey: "url")
@@ -42,20 +42,20 @@ class SecondViewController: UIViewController {
             print("failed to save")
             showAlert(message: "failed to save data")
         }
-
-        
         
     }
     
+    //Initial random token, overwritten after performing initial setup with server.
     func generateToken() -> String {
         return "randomToken"
     }
     
+    //Show the user some feedback
     @IBAction func showDataAction(_ sender: AnyObject) {
         showAlert(message: generateMessage())
     }
     
-    //needs a title attribute
+    //Helper function to show user feedback
     func showAlert(message: String) {
         let title = "Data"
         
@@ -69,6 +69,7 @@ class SecondViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
+    //Generate the message to be displayed on the table view. If none are available, we want to handle that y simply displaying "no data"
     func generateMessage() -> String {
         let context = appDelegate.persistentContainer.viewContext
         
@@ -88,6 +89,7 @@ class SecondViewController: UIViewController {
                 }
             }
             else {
+                //No URLs have been saved yet
                 return "no data"
             }
         }
@@ -98,10 +100,9 @@ class SecondViewController: UIViewController {
         return urls
     }
     
+    //Deprecated
     func alertAction() {
-        //Emitting here works
-        //IOManager.startHandshake(parameters: [:])
-        print("It Worked")
+        print("Alerting")
     }
     
     override func viewDidLoad() {

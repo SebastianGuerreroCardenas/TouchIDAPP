@@ -11,6 +11,8 @@ import LocalAuthentication
 
 class ViewController: UIViewController {
     
+    //NOTE: Most of this code has been moved into FristViewController.swift, we updated it so the user does not have to access this page to improve usability. We kept it anyway.
+    
     var url = ""
     var name = ""
     var username = ""
@@ -18,22 +20,20 @@ class ViewController: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var usernameLabel: UILabel!
     
+    //Load the salt hash manager
     let shm = saltHashManager()
     
+    // Set up view display
     override func viewDidLoad() {
         super.viewDidLoad()
-        shm.createHash(handshakeString: "a", rngString: "b")
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
         imageView.contentMode = .scaleAspectFit
-        // 4
         let image = UIImage(named: "logo.png")
         imageView.image = image
-        // 5
         navigationItem.titleView = imageView
         titleLabel.text = url
         nameLabel.text = name
         usernameLabel.text = username
-        var website = URLCoreDataManager(url: url)
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -54,6 +54,7 @@ class ViewController: UIViewController {
         }
     }
     
+    //Performs authentication using TouchID, only continues if authentication is met
     func touckID(_ handshake: Bool) {
         let authentificationContext = LAContext()
         var error: NSError?
@@ -62,8 +63,10 @@ class ViewController: UIViewController {
             //touch id
             authentificationContext.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: "ONLY HUMANS", reply: { (success, error) in
                 if success {
+                    //Authentication was successful
                     self.navigateToAuthenticatedVC(handshake)
                 } else {
+                    //Authentication failed
                     if let error = error as? NSError {
                         let message = self.errorMessageForLAErrorCode(errorCode: error.code)
                         self.showAlertViewAfterEvaluation(message: message)
@@ -76,10 +79,12 @@ class ViewController: UIViewController {
         }
     }
     
+    //Shows an error if some authentication error is encountered
     func showAlertViewAfterEvaluation(message: String) {
         showAlertWithTitle(title: "Error", message: message)
     }
     
+    //Categorizes possible errors from TouchID
     func errorMessageForLAErrorCode(errorCode: Int) -> String {
         var message = ""
         switch errorCode {
@@ -109,8 +114,10 @@ class ViewController: UIViewController {
         
     }
     
+    //Distinguish first time setup from normal login attempt and move to appropriate screen
     func navigateToAuthenticatedVC(_ handshake: Bool) {
         if handshake{
+            //First time logging in
             if let loggedInVC = self.storyboard?.instantiateViewController(withIdentifier: "socketConnectionC") as? SocketConnectionViewController {
                 DispatchQueue.main.async {
                     loggedInVC.url = self.url
@@ -120,6 +127,7 @@ class ViewController: UIViewController {
                 }
                 }
         } else {
+            //Normal login procedures
             if let loginVC = self.storyboard?.instantiateViewController(withIdentifier: "SocketLogin") as? LoginViewController {
                 DispatchQueue.main.async {
                     loginVC.url = self.url
@@ -131,10 +139,12 @@ class ViewController: UIViewController {
         }
     }
     
+    //In the event the device does not have TouchID, display an error
     func showAlertViewForNoBiometrics() {
         showAlertWithTitle(title: "Error", message: "This device does not have a touch ID sensor.")
     }
     
+    //Present alerts as needed
     func showAlertWithTitle(title: String, message:String) {
         let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)

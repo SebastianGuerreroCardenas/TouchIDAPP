@@ -25,27 +25,28 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
         imageView.contentMode = .scaleAspectFit
-        // 4
         let image = UIImage(named: "logo.png")
         imageView.image = image
-        // 5
         navigationItem.titleView = imageView
-
+        
+        //Set display text as needed
         self.urlLabel.text = self.url
         self.usernameLabel.text = self.username
+        //Try logging in
         self.sendLoginAttempt()
-        // Do any additional setup after loading the view.
     }
     
     /**
      Prepares new socket connection for login and loads handlers
     */
     func sendLoginAttempt(){
+        //Close the current connection
         self.IOManager.closeConnection()
+        //Open a new connection to the new URL
         self.overwriteSocket()
+        //Load login actions
         IOManager.loadLoginHandlers(inst: self)
-//        IOManager.establishConnection()
-    }
+     }
     
     /**
      Callback called after it receives something on the connect message from the server
@@ -55,12 +56,11 @@ class LoginViewController: UIViewController {
         params["name"] = self.name
         params["username"] = self.username
         params["token"] = self.token
+        //Get params and start logging in
         IOManager.startLogin()
-        //IOManager.loginHash(parameters: params, randomElt: "16")
     }
     
     func transitionBackToMenu(){
-        //sleep(1)
         performSegue(withIdentifier: "loginConfirm", sender: "")
     }
     
@@ -71,16 +71,18 @@ class LoginViewController: UIViewController {
     func handleLoginResult(result: String){
         print(result)
         if (result == "True"){
+            //Successful login
             transitionBackToMenu()
         } else {
+            //Login failed
             transitionToFailed()
         }
     }
     
+    //Change socket connection
     func overwriteSocket() -> Bool{
         //Need to make sure self.url is of form http:\\url\
         let result = self.IOManager.changeClient(url: self.url)
-        //self.IOManager.establishConnection()
         if result {
             self.IOManager.establishConnection()
             print("Able to change client successfully")

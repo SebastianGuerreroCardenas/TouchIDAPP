@@ -16,16 +16,13 @@ class SocketConnectionViewController: UIViewController {
     var url: String = ""
     var name: String = ""
     var username: String = ""
-    //var token: String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
         imageView.contentMode = .scaleAspectFit
-        // 4
         let image = UIImage(named: "logo.png")
         imageView.image = image
-        // 5
         navigationItem.titleView = imageView
 
         if self.url == "" {
@@ -39,10 +36,10 @@ class SocketConnectionViewController: UIViewController {
          4. Send out verification
         */
         
-        // Do any additional setup after loading the view.
+        // Overwrite the socket
         let didOverwrite = self.overwriteSocket()
-        //self.newSocketConnection() taken care of in overwriteSocket
         if didOverwrite {
+            //If we were able to overwrite, establish the connection and load handlers
             self.IOManager.establishConnection()
             self.loadHandlers()
             print("Loaded Handlers")
@@ -90,28 +87,19 @@ class SocketConnectionViewController: UIViewController {
         
         do {
             let results = try context.fetch(request)
-            
+            //Set the token in NSCoreData to be the token we got back from the server
             if results.count > 0 {
                 for result in results as! [NSManagedObject]{
                     if let urlGotBack = result.value(forKey: "url") as? String,
                         let nameGotBack = result.value(forKey: "username") as? String{
                         if (urlGotBack == url) && (nameGotBack == username) {
                             result.setValue(data[0] as! String, forKey: "token")
-//                            let finalName = result.value(forKey: "name")
-//                            let finalUsername = result.value(forKey: "username")
-//                            let finalToken = result.value(forKey: "token")
-//                            var finalDict: [String: Any] = [:]
-//                            finalDict["name"] = finalName
-//                            finalDict["username"] = finalUsername
-//                            finalDict["token"] = finalToken
-//                            return finalDict
                         }
                     }
                 }
 
                     try context.save()
                     print("Saved")
-                    //showAlert(message: "data was saved")
             }
             else {
                 print("No results")
@@ -121,10 +109,11 @@ class SocketConnectionViewController: UIViewController {
             //process erros
             print("Error")
         }
-
+        //Move on, because we were able to establish the handshake with the server
         performSegue(withIdentifier: "established", sender: data)
     }
     
+    //Prepare some fields before swapping screens
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "established") {
             let finalDestination = segue.destination as? EstablishedHandshakeViewController
@@ -139,9 +128,7 @@ class SocketConnectionViewController: UIViewController {
     */
     @IBAction func sendVerification(sender: AnyObject){
         //Need to find out now if we are sending a setup or a request to sign-in
-        var finalDict : [String : AnyObject] = [:]
-        finalDict["name"] = "Akash" as AnyObject?
-        IOManager.startHandshake(parameters: finalDict)
+        IOManager.startHandshake(parameters: appDelegate.credentials as [String : AnyObject])
         
         //Info coming back from here is to be handled in some handler from before
         print("Seding out handshake, see server output")

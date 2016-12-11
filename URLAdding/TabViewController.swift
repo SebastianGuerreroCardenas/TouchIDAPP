@@ -13,6 +13,7 @@ class TabViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Custom tab features
         tabBar.items?[0].title = "Existing Account"
         tabBar.items?[1].title = "Add Account"
         // Do any additional setup after loading the view.

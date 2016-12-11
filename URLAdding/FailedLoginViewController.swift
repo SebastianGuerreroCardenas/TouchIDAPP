@@ -17,11 +17,10 @@ class FailedLoginViewController: UIViewController {
         super.viewDidLoad()
         timeLeft = 3
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector:#selector(FailedLoginViewController.countDownTick), userInfo: nil, repeats: true)
-        // Do any additional setup after loading the view.
     }
     
+    //Switch back to home screen after 3 seconds, similar to other menus
     func countDownTick(){
-        //if timeLeft = 0
         print(timeLeft)
         if (timeLeft == 0) {
             timer!.invalidate()

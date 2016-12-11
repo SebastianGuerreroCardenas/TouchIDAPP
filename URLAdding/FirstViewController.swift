@@ -17,9 +17,6 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var urlSelected = ""
     let shm = saltHashManager()
     var credentials: [String : Any] = [:]
-
-    //let IOManager = SocketIOManager.sharedInstance
-
     
     var webList = [String]()
     var displayTitles = [String]()
@@ -38,11 +35,12 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        if self.authedWithTID(){
         urlSelected = webList[indexPath.row]
         let username = displayTitles[indexPath.row].components(separatedBy: "as ")[1]
         let storedCreds = findCredentials(url: urlSelected, username: username)
+        //Either the token after the handshake is set, or randomToken if it has not been set below
         let token = storedCreds["token"] as! String
+        //Save credentials
         appDelegate.credentials = storedCreds
         if (token == "randomToken") {
             //run handshake
@@ -51,43 +49,29 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
             //Run login
             self.touckID(false)
         }
-//        let destination = storyboard.instantiateViewController(withIdentifier: "socketLogin") as! LoginViewController
-//        destination.url = urlSelected
-//        destination.name = storedCreds["name"] as! String
-//        destination.username = storedCreds["username"] as! String
-//        destination.token = token
-//        navigationController?.pushViewController(destination, animated: true)
-//        urlSelected = webList[indexPath.row]
-//        let storyBoard = storyboard?.instantiateViewController(withIdentifier: "websiteDetails")
-        //viewController.url = urlSelected
-//       rself.navigationController?.pushViewController(viewController!, animated: true)
-//        print(findCredentials(url: urlSelected))
         print(urlSelected)
-//    }
     }
     
+    //Perform move to the handshake page if authenticated and this is a first-time setup
     func moveToHandshakePage(){
         let storedCreds = self.credentials
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-
         let destination = storyboard.instantiateViewController(withIdentifier: "socketConnectionC") as! SocketConnectionViewController
         destination.url = urlSelected
         destination.name = storedCreds["name"] as! String
         destination.username = storedCreds["username"] as! String
-        //destination.token = token
         navigationController?.pushViewController(destination, animated: true)
     }
     
+    //Perform move to the login page if authenticated and this is not a first time setup (normal login)
     func moveToLoginPage(){
         let storedCreds = self.credentials
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-
         let destination = storyboard.instantiateViewController(withIdentifier: "SocketLogin") as! LoginViewController
         destination.url = urlSelected
         destination.name = storedCreds["name"] as! String
         destination.username = storedCreds["username"] as! String
         let token = storedCreds["token"] as! String
-
         destination.token = token
         navigationController?.pushViewController(destination, animated: true)
     }
@@ -95,6 +79,8 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func authedWithTID(){
         return touckID(true)
     }
+    
+    //Again perform TouchID to authenticate user before moving on
     func touckID(_ handshake: Bool) {
         let authentificationContext = LAContext()
         var error: NSError?
@@ -103,14 +89,18 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
             //touch id
             authentificationContext.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: "ONLY HUMANS", reply:  { (success, error) in DispatchQueue.main.async {
                 if success {
+                    //TouchID Authentication Successful
                     if handshake {
+                        //If this is the first time setting up, go to handshake
                     self.moveToHandshakePage()
                         return
                     } else {
+                        //This is a login attempt so we should simply login
                         self.moveToLoginPage()
                         return
                     }
                 } else {
+                    //TouchID authentication was not successful
                     if let error = error as? NSError {
                         let message = self.errorMessageForLAErrorCode(errorCode: error.code)
                         self.showAlertViewAfterEvaluation(message: message)
@@ -118,15 +108,31 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 }
                 }})
         }else {
-            //showAlertViewForNoBiometrics()
+            showAlertViewForNoBiometrics()
             return
         }
+    }
+    
+    //In the event the device does not have TouchID, display an error
+    func showAlertViewForNoBiometrics() {
+        showAlertWithTitle(title: "Error", message: "This device does not have a touch ID sensor.")
+    }
+    
+    //Present alerts as needed
+    func showAlertWithTitle(title: String, message:String) {
+        let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        
+        alertVC.addAction(okAction)
+        
+        self.present(alertVC, animated: true, completion: nil)
     }
     
     func showAlertViewAfterEvaluation(message: String) {
         //showAlertWithTitle(title: "Error", message: message)
     }
     
+    //Decodes errors coming back from TouchID
     func errorMessageForLAErrorCode(errorCode: Int) -> String {
         var message = ""
         switch errorCode {
@@ -159,15 +165,6 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //shm.createHash(handshakeString: "a", rngString: "b")
-
-        //Load event handlers and finish establishing connection
-        //IOManager.handShakeResponse()
-//        IOManager.establishConnection()
-        
-        //Emitting here did not work since connection had not been fully established
-//        IOManager.startHandshake(parameters: [:])
-        // Do any additional setup after loading the view, typically from a nib.
     }
     
     override func didReceiveMemoryWarning() {
@@ -175,6 +172,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         // Dispose of any resources that can be recreated.
     }
     
+    //Function runs after view is shown to improve display UI
     override func viewDidAppear(_ animated: Bool) {
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
         imageView.contentMode = .scaleAspectFit
@@ -188,22 +186,19 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     }
     
+    //Function to add some parameters before shifting pages
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "detailView" ,
             let nextScene = segue.destination as? ViewController ,
             let indexPath = self.webTable.indexPathForSelectedRow {
             let selectedURL = webList[indexPath.row]
-//            print(findCredentials(url: selectedURL))
-            //HERE
             nextScene.url = selectedURL
-            //IOManager.startHandshake(parameters: [:])
-
         }
         
     }
     
+    //Get the user's credentials from NSCoreData so they only have to enter URL and username once
     func findCredentials(url: String, username: String) -> [String: Any]{
-        //Either do an API call or use internals?
         //Assuming using internal data
         let context = appDelegate.persistentContainer.viewContext
         
@@ -239,11 +234,12 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
         }
         catch {
-            //process erros
+            //process errors
         }
         return ["error" : "Internal Error"]
     }
     
+    //Get list of all websties and usernames to display on table view to improve UX
     func generateWebList() {
         webList = ["wow", "yes"]
         displayTitles = ["wow", "yes"]
@@ -275,7 +271,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
         }
         catch {
-            //process erros
+            //process errors
         }
     }
     

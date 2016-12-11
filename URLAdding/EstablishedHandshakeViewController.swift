@@ -24,10 +24,8 @@ class EstablishedHandshakeViewController: UIViewController {
         self.successMsg.text = "Successfully performed setup with \(url) as \(username)"
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
         imageView.contentMode = .scaleAspectFit
-        // 4
         let image = UIImage(named: "logo.png")
         imageView.image = image
-        // 5
         navigationItem.titleView = imageView
 
         // Do any additional setup after loading the view.
@@ -35,22 +33,17 @@ class EstablishedHandshakeViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         timeLeft = 3
+        //Automatically redirect user back to home screen
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector:#selector(EstablishedHandshakeViewController.countDownTick), userInfo: nil, repeats: true)
-//        while (x > 0) {
-//            label.text = String(x)
-//            label.reloadInputViews()
-//            sleep(1)
-//            x = x - 1
-//        }
         label.text = String(timeLeft)
     }
     
+    //Move back home after 3 seconds
     func countDownTick(){
-        //if timeLeft = 0
-        print(timeLeft)
         if (timeLeft == 0) {
             timer!.invalidate()
             timer=nil
+            //Actually move back to menu when out of time
             performSegue(withIdentifier: "backToMenu", sender: "")
         } else {
             timeLeft = timeLeft - 1
@@ -66,7 +59,7 @@ class EstablishedHandshakeViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "backToMenu") {
             let finalDestination = segue.destination as? FirstViewController
-            //finalDestination?.data = sender as! [Any]
+            //Ensure user cannot try to re-access login without first authenticating
             finalDestination?.navigationItem.hidesBackButton = true
 
         }
